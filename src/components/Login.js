@@ -12,8 +12,8 @@ class Login extends Component {
   }
 
   componentDidMount () {
-    if (window.sessionStorage.getItem("password")) {
-      this.setState({password: window.sessionStorage.getItem("password")})
+    if (localStorage.getItem("password")) {
+      this.setState({password: localStorage.getItem("password")})
     }
   }
 
@@ -21,7 +21,7 @@ class Login extends Component {
     if (!this.state.password) {
       return this.setState({errorFlag: 'Please input password'})
     } else {
-      window.sessionStorage.setItem("password", this.state.password)
+      localStorage.setItem("password", this.state.password)
       AuthService.login({ password: this.state.password }, (err) => {
         if (err) {
           this.setState({errorFlag: err})

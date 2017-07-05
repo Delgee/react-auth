@@ -12,12 +12,16 @@ class Login extends Component {
   }
 
   componentDidMount () {
+    if (window.sessionStorage.getItem("password")) {
+      this.setState({password: window.sessionStorage.getItem("password")})
+    }
   }
 
   login = () => {
     if (!this.state.password) {
       return this.setState({errorFlag: 'Please input password'})
     } else {
+      window.sessionStorage.setItem("password", this.state.password)
       AuthService.login({ password: this.state.password }, (err) => {
         if (err) {
           this.setState({errorFlag: err})
@@ -44,7 +48,7 @@ class Login extends Component {
         <div>
           <div>
             <label>Password</label>
-            <input name="password" onChange={this.handleInputChange} type="password" onKeyPress={(event) => {if (event.key == 'Enter') this.login();}} />
+            <input name="password" onChange={this.handleInputChange} value={this.state.password} type="password" onKeyPress={(event) => {if (event.key === 'Enter') this.login();}} />
           </div>
           {this.state.errorFlag && <div style={{color: 'red'}}>{this.state.errorFlag}</div>}
           <button type="button" onClick={this.login}>Login</button>

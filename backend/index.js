@@ -15,14 +15,10 @@ app.use(bodyParser.urlencoded({
 
 app.use('/api/login', function (req, res) {
 
-  console.log('aaa', req.body);
-
-  if (!req.body.username) return res.status(400).send('bad_request!')
   if (!req.body.password) return res.status(400).send('bad_request!')
 
-  db.collection('user').find({username: req.body.username}).toArray(function(err, results) {
+  db.collection('user').find().toArray(function(err, results) {
     if (err) return res.status(500).send('something_wrong!');
-    if (results.length === 0) return res.status(403).send('bad username or password!');
 
     var checker = false;
 
@@ -33,7 +29,7 @@ app.use('/api/login', function (req, res) {
     if (checker) {
       res.send('success')
     } else {
-      return res.status(400).send('bad username or password!');
+      return res.status(403).send('bad password!');
     }
   })
 })

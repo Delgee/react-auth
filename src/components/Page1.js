@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class About extends Component {
+class Page1 extends Component {
 
   render() {
     return (
@@ -13,11 +13,11 @@ class About extends Component {
           <Link style={{margin: '15px', textTransform: 'uppercase'}} to="/page3">Page3</Link>
           <Link style={{margin: '15px', textTransform: 'uppercase'}} to="/page4">Page4</Link>
           <Link style={{margin: '15px', textTransform: 'uppercase'}} to="/about">About</Link>
-          <h2 style={{textAlign: 'center', margin: '300px'}}>About</h2>
+          <h2 style={{textAlign: 'center', margin: '300px'}}>PAGE 1</h2>
         </div>
       </div>
     );
   }
 }
 
-export default About;
+export default Page1;

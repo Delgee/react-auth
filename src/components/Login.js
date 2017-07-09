@@ -26,7 +26,7 @@ class Login extends Component {
         if (err) {
           this.setState({errorFlag: err})
         } else {
-          this.props.history.push('/terms');
+          this.props.history.push('/terms' + this.props.location.search);
           console.log('logged in', AuthService);
         }
       });
